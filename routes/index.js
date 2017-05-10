@@ -22,7 +22,17 @@ router.get('/profiles', function(req, res) {
         profiles: profiles
       })
     })
-}
-)
+})
+
+router.get('/profiles/:id', function(req, res) {
+  var connection = req.app.get('connection')
+  var id = req.params.id
+  db.getProfile(id, connection)
+   .then(function(profile){
+     res.render('profile', {
+       profile: profile
+     } )
+   })
+})
 
 module.exports = router

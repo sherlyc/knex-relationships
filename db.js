@@ -17,3 +17,9 @@ function getProfiles(connection) {
          .select('profiles.id as pid', 'url', 'name')
          .join('users', 'profiles.user_id','=', 'users.id')
 }
+
+function getProfile(id, connection) {
+  return connection('profiles')
+        .select()
+        .where('id', id)
+}
