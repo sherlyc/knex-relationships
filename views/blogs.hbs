@@ -1,8 +1,7 @@
 <h1>List All Blog Posts</h1>
 {{#each posts}}
   <div class='post'>
-      <div class='title'><b>{{title}}</b></div>
-      <div class='content'>{{content}}</div>
+      <div class='title'><a href="blogs/{{id}}"><b>{{title}}</b></a></div>
       <div class='userName'><i>{{name}}</i></div>
   </div>
 {{/each}}

@@ -62,8 +62,15 @@ router.post('/addPost', (req, res)=>{
 router.get('/blogs', (req, res)=>{
   db.getPosts(req.app.get('connection'))
     .then((result)=>{
-      console.log(result)
       res.render('blogs', {posts:result})
+    })
+})
+
+router.get('/blogs/:id', (req, res)=>{
+  db.getPosts(req.app.get('connection'))
+    .then((result)=>{
+      console.log(result)
+      res.render('blog', result)
     })
 })
 

@@ -55,6 +55,14 @@ function addPost(data, connection){
 
 function getPosts(connection){
   return connection('posts')
-    .select('title', 'content', 'name')
+    .select('posts.id as id', 'title','name')
     .join('users', 'posts.user_id', '=' ,'users.id')
+}
+
+function getPost(id, connection){
+  return connection('posts')
+    .select('title', 'content', 'name')
+    .where('posts.id', id)
+    .join('users', 'posts.user_id', '=', 'users.id')
+
 }
