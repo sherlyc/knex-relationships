@@ -35,4 +35,19 @@ router.get('/profile/:id', function(req, res) {
    })
 })
 
+
+router.get('/addUser', function(req, res) {
+  res.render('addUser')
+})
+
+router.post('/addUser', (req, res)=>{
+  db.addUser(req.body, req.app.get('connection'))
+    .then((result)=>{
+      res.redirect('/')
+    })
+
+})
+
+
+
 module.exports = router
