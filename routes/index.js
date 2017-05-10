@@ -36,11 +36,11 @@ router.get('/profile/:id', function(req, res) {
 })
 
 
-router.get('/addUser', function(req, res) {
+router.get('/addUser', function(req, res) {//display add User form
   res.render('addUser')
 })
 
-router.post('/addUser', (req, res)=>{
+router.post('/addUser', (req, res)=>{//perform add user to db
   db.addUser(req.body, req.app.get('connection'))
     .then((result)=>{
       res.redirect('/')
@@ -48,6 +48,24 @@ router.post('/addUser', (req, res)=>{
 
 })
 
+router.get('/addPost', (req, res)=>{//display add blog post form
+  res.render('addPost')
+})
+
+router.post('/addPost', (req, res)=>{
+  db.addPost(req.body, req.app.get('connection'))
+    .then((result)=>{
+      res.send('blog post inserted')
+    })
+})
+
+router.get('/blogs', (req, res)=>{
+  db.getPosts(req.app.get('connection'))
+    .then((result)=>{
+      console.log(result)
+      res.render('blogs', {posts:result})
+    })
+})
 
 
 module.exports = router

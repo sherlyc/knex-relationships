@@ -1,9 +1,11 @@
 module.exports = {
-  getUser: getUser,
-  getUsers: getUsers,
-  getProfiles: getProfiles,
-  getProfile: getProfile,
-  addUser
+  getUser,
+  getUsers,
+  getProfiles,
+  getProfile,
+  addUser,
+  addPost,
+  getPosts
 }
 
 function getUsers(connection) {
@@ -40,5 +42,19 @@ function addUser(data, connection){
                         picture: data.picture
                })
          })
+}
 
+function addPost(data, connection){
+  return connection('posts')
+    .insert({
+              title: data.title,
+              content: data.content,
+              user_id: data.user_id
+            })
+}
+
+function getPosts(connection){
+  return connection('posts')
+    .select('title', 'content', 'name')
+    .join('users', 'posts.user_id', '=' ,'users.id')
 }
