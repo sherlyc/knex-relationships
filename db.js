@@ -1,7 +1,8 @@
 module.exports = {
   getUser: getUser,
   getUsers: getUsers,
-  getProfiles: getProfiles
+  getProfiles: getProfiles,
+  getProfile: getProfile
 }
 
 function getUsers(connection) {
@@ -14,12 +15,13 @@ function getUser(id, connection) {
 
 function getProfiles(connection) {
   return connection('profiles')
-         .select('profiles.id as pid', 'url', 'name')
+         .select('profiles.id as pid', 'url', 'name', 'users.id as uid')
          .join('users', 'profiles.user_id','=', 'users.id')
 }
 
 function getProfile(id, connection) {
   return connection('profiles')
-        .select()
-        .where('id', id)
+        .select('name', 'email', 'url', 'picture')
+        .where('user_id', id)
+        .join('users', 'profiles.user_id', '=', 'users.id')
 }

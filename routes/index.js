@@ -24,14 +24,14 @@ router.get('/profiles', function(req, res) {
     })
 })
 
-router.get('/profiles/:id', function(req, res) {
+router.get('/profile/:id', function(req, res) {
   var connection = req.app.get('connection')
   var id = req.params.id
   db.getProfile(id, connection)
+   .first()
    .then(function(profile){
-     res.render('profile', {
-       profile: profile
-     } )
+     console.log(profile)
+     res.render('profile', profile)
    })
 })
 

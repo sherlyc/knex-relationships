@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>EDA Phase 1 Express Boilerplate</title>
-</head>
-
-<body>
   <table>
     {{#each profiles}}
     <tr>
       <td>{{pid}}</td>
       <td><a href="{{url}}">Favourite Link</a></td>
-      <td>{{name}}</td>
+      <td><a href="/profile/{{uid}}">{{name}}</a></td>
     {{/each}}
    </tr>
   </table>
-</body>
-
-</html>
